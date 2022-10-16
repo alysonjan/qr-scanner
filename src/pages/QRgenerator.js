@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import QRcode from 'qrcode.react'
 
 function QRgenerator() {
-    const [qr, setQr] = useState('lintangwisesa');
+    const [qr, setQr] = useState('JoshuaTheGr8t');
     const handleChange = (event) => {
         setQr(event.target.value);
     };

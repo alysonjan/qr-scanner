@@ -1,19 +1,18 @@
 import {Grid, Button, Typography} from '@material-ui/core';
 import Icon from '@mdi/react'
 import { mdiQrcode, mdiQrcodeScan } from '@mdi/js';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function Home() {
-
+    const { classID } = useParams()
     return (
-        <div>
-
-            <Typography style={{margin:30}} variant="h2">
-            React QR Code
+        <div sx={{ display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+            <Typography style={{ textAlign:'center'}} variant="h4">
+            Scan
             </Typography>
 
-            <Grid container spacing={6}>
-                <Grid item xs={6}>
+            <Grid container spacing={3}>
+                {/* <Grid item xs={6}>
                     <Link to="/qr_generator">
                     <Button variant="contained" size="large" color="primary">
                         <Icon 
@@ -25,9 +24,9 @@ function Home() {
                         />
                     </Button>
                     </Link>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={6}>
-                    <Link to="/qr_scanner">
+                    <Link to={`/qr_scanner/${classID}`}>
                     <Button variant="contained" size="large" color="primary">
                         <Icon 
                         style={{padding:10}}
