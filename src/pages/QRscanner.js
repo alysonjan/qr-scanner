@@ -17,8 +17,8 @@ function QRscanner() {
     const handleError = err => {
     console.error(err)
     }
-    const object1 = JSON.parse(qrscan);
-    let studentID = object1 && object1?.student_id
+    const object1 = JSON.parse(qrscan ? qrscan : null);
+    let studentID = object1?.student_id
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -29,7 +29,7 @@ function QRscanner() {
             }).then(res => {
                 if(res.status === 201){
                     console.log(res)
-                    alert(res?.data)
+                    alert(res?.data?.msg)
                 }
             })
             window.location.reload(false)
