@@ -38,7 +38,7 @@ function QRscanner() {
     }
 
     return (
-        <div>
+        <div style={{ display:'flex', flexDirection:'column', justifyContent:'center'}}>
             <Link to="/subject-list">
             <Fab style={{marginRight:10}} color="primary">
                 <ArrowBack/>
