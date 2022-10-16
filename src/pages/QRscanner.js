@@ -17,17 +17,18 @@ function QRscanner() {
     const handleError = err => {
     console.error(err)
     }
-    const object1 = JSON.parse(qrscan ? qrscan : null);
-    let studentID = object1?.student_id
+    const object1 = JSON.parse(qrscan);
+    let studentID = object1 && object1?.student_id
 
     const handleSubmit = async(e) => {
         e.preventDefault()
         try {
             await axiosInstance.post('/attendance',{
                 student_id:studentID,
-                class_id:id
+                class_id:id && id
             }).then(res => {
                 if(res.status === 201){
+                    console.log(res)
                     alert(res?.data)
                 }
             })
