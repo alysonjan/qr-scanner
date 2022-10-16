@@ -41,7 +41,7 @@ function QRscanner() {
 
     return (
         <div>
-            <Link to="/">
+            <Link to="/subject-list">
             <Fab style={{marginRight:10}} color="primary">
                 <ArrowBack/>
             </Fab>
