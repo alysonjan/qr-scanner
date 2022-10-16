@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Fab, TextareaAutosize} from '@material-ui/core'
+import {Button, Fab, TextareaAutosize} from '@material-ui/core'
 import {ArrowBack} from '@material-ui/icons'
 import { Link } from "react-router-dom";
 import QrScan from 'react-qr-reader'
@@ -20,24 +20,22 @@ function QRscanner() {
     const object1 = JSON.parse(qrscan ? qrscan : null);
     let studentID = object1?.student_id
 
-    useEffect(() => {
-        const sendQr = async() => {
-            try {
-                await axiosInstance.post('/attendance',{
-                    student_id:studentID,
-                    class_id:id
-                }).then(res => {
-                    if(res.status === 201){
-                        alert('Success!! ayt ayt 👌')
-                    }
-                })
-                window.location.reload(false)
-            } catch (err) {
-                alert(err.response.data.msg) 
-            }
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        try {
+            await axiosInstance.post('/attendance',{
+                student_id:studentID,
+                class_id:id
+            }).then(res => {
+                if(res.status === 201){
+                    alert(res?.data)
+                }
+            })
+            window.location.reload(false)
+        } catch (err) {
+            alert(err.response.data.msg) 
         }
-        sendQr()
-    },[studentID,id])
+    }
 
     return (
         <div>
@@ -58,15 +56,16 @@ function QRscanner() {
                 />
             </div>
             </center>
-{/* 
+
             <TextareaAutosize
                 style={{fontSize:18, width:320, height:100, marginTop:100}}
                 rowsMax={4}
                 defaultValue=''
                 value={qrscan}
-            /> */}
+            />
+            <Button variant='contained' color='primary' size='small' onClick={(e)=>handleSubmit(e)} >Submit</Button>
 
-      </div>
+        </div>
     );
   }
   
