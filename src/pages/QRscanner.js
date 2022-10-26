@@ -32,7 +32,7 @@ function QRscanner() {
                     alert(res?.data?.msg)
                 }
             })
-            window.location.reload(false)
+            // window.location.reload(false)
         } catch (err) {
             alert(err.response.data.msg) 
         }
